@@ -6,14 +6,18 @@ import Form from 'react-bootstrap/Form';
 const SaveSearchModal = ({ handleSubmit, handleClose, show }) => {
   const [filterGroupName, setFilterGroupName] = useState('');
 
-  useEffect(() => {
-    console.log('>> useeffect save searchmodal', show);
-  }, [show]);
+  useEffect(() => {}, [show]);
 
-  const handleSaveSearchSubmit = () => {
-    console.log('>>> shawna handle unb moda;');
+  const handleSaveSearchSubmit = (e) => {
+    // TODO: update the tab name in tab and cardheader
+    console.log('>>> shawna handle filter name ', e, filterGroupName);
     handleSubmit();
     handleClose();
+  };
+
+  const handleInputChange = (e) => {
+    const filterName = e.target.value;
+    setFilterGroupName(filterName);
   };
 
   return (
@@ -27,7 +31,7 @@ const SaveSearchModal = ({ handleSubmit, handleClose, show }) => {
           id='savedUnamedSearchModal'
         >
           <Modal.Header closeButton></Modal.Header>
-          <Modal.Body style={{ maxWidth: '500px', padding: '30px' }}>
+          <Modal.Body style={{ maxWidth: '500px', padding: ' 0 30px' }}>
             <section>
               <img src='/vendors/media/icons/save-01.svg' />
               <Modal.Title>Save Filter Group</Modal.Title>
@@ -41,12 +45,12 @@ const SaveSearchModal = ({ handleSubmit, handleClose, show }) => {
                 className='form-control form-control-solid ps-10'
                 name='savedUnamedSearchInput'
                 value={filterGroupName}
-                onChange={setFilterGroupName}
+                onChange={handleInputChange}
                 placeholder='Type Name'
               />
             </Form>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer style={{ display: 'flex', justifyContent: 'center' }}>
             <Button
               variant='secondary'
               onClick={handleSaveSearchSubmit}

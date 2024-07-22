@@ -32,16 +32,16 @@ const TableTemplate = ({
   const [filterBadges, setFilterBadges] = useState([]);
 
   const [show, setShow] = useState(false);
-  const [unsavedFilterModalVisibility, setUnsavedFilterModalVisibility] =
-    useState(false);
+  const [showSaveFilterModal, setShowSaveFilterModal] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
   };
 
-  const toggleUnsavedFilterModal = () => {
-    setUnsavedFilterModalVisibility(!unsavedFilterModalVisibility);
+  const handleSaveFilterModalClose = () => setShowSaveFilterModal(false);
+  const handleSaveFilterModalShow = () => {
+    setShowSaveFilterModal(true);
   };
 
   const handleUnsavedFilterSubmit = () => {
@@ -269,7 +269,7 @@ const TableTemplate = ({
                   <Button
                     type='submit'
                     id='save-filtered-search'
-                    onClick={unsavedFilterModalVisibility}
+                    onClick={handleSaveFilterModalShow}
                     style={{
                       backgroundColor: 'transparent',
                       background: 'var(--orange-gradient)!important',
@@ -282,9 +282,9 @@ const TableTemplate = ({
                     <span className='indicator-label'>Save</span>
                   </Button>
                   <SaveSearchModal
-                    show={toggleUnsavedFilterModal}
+                    show={showSaveFilterModal}
                     handleSubmit={handleUnsavedFilterSubmit}
-                    handleClose={toggleUnsavedFilterModal}
+                    handleClose={handleSaveFilterModalClose}
                   />
                 </div>
               </section>
