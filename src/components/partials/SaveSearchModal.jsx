@@ -16,7 +16,6 @@ const SaveSearchModal = ({
   }, [filterGroupName]);
 
   const handleSaveSearchSubmit = () => {
-    // TODO: update the tab name in tab and cardheader
     // TODO: Make call to DB to save filter group
     const updateFilterNameEvent = new Event('updateFilterNameEvent');
     document.dispatchEvent(updateFilterNameEvent);

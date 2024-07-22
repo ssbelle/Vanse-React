@@ -12,8 +12,6 @@ import SearchPage from './pages/SearchPage.jsx';
 const router = createBrowserRouter([{ path: '/', element: <SearchPage /> }]);
 
 function App() {
-  const [count, setCount] = useState(0);
-
   // Limit the amount of times UseEffect is called with dependancy and ref especially with strict mode on for my sanity
   useEffect(() => {
     // getUserData();

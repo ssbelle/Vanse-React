@@ -3,11 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Badge from '../partials/Badge.jsx';
 import CardHeader from '../partials/CardHeader.jsx';
-
 import SearchTable from '../../components/tableTamplates/SearchTable.jsx';
 import SearchFiltersModal from '../partials/SearchFiltersModal.jsx';
 import SaveSearchModal from '../partials/SaveSearchModal.jsx';
-import SearchButton from '../partials/SearchButton.jsx';
 
 const TableTemplate = ({
   contentType,
@@ -29,15 +27,13 @@ const TableTemplate = ({
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredSearchItems, setFilteredSearchItems] = useState(tableData);
-
   const [filterBadges, setFilterBadges] = useState([]);
-
-  const [show, setShow] = useState(false);
+  const [showFilterModal, setFiltersModalShow] = useState(false);
   const [showSaveFilterModal, setShowSaveFilterModal] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => setFiltersModalShow(false);
   const handleShow = () => {
-    setShow(true);
+    setFiltersModalShow(true);
   };
 
   const handleSaveFilterModalClose = () => setShowSaveFilterModal(false);
@@ -47,7 +43,6 @@ const TableTemplate = ({
 
   const handleUnsavedFilterSubmit = () => {
     // TODO: make call here to save search
-    console.log('>>> handleSearchSave');
   };
 
   useEffect(() => {
@@ -59,24 +54,18 @@ const TableTemplate = ({
   const handleInputChange = (e) => {
     e.preventDefault();
     const search = e.target.value;
-
     setSearchTerm(search);
   };
 
   const handleOnClick = () => {
-    const searchInput = document.getElementById('searchInput');
-
-    // console.log('>>> search term', searchInput, searchTerm);
     const filteredItems = data.filter((term) => {
       return term.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
-    // console.log('>>>> sear match', filteredItems);
     setFilteredSearchItems(filteredItems);
   };
 
   const handleFiltersSubmit = () => {
-    // Handle updating filterBadges
-    console.log('>> shawna', hardcodedFilters);
+    // TODO: Handle updating filterBadges with real data
     setFilterBadges(hardcodedFilters);
     onFilter();
   };
@@ -85,7 +74,6 @@ const TableTemplate = ({
     e.preventDefault();
 
     const badgesArray = filterBadges.filter((badge, i) => {
-      console.log('>>>. whats e', i.toString() === e.target.dataset.filterId);
       return i.toString() !== e.target.dataset.filterId;
     });
 
@@ -119,17 +107,12 @@ const TableTemplate = ({
                     alignItems: 'flex-end',
                   }}
                 >
-                  {/* <SearchButton /> */}
-
-                  {/* <!--begin::Compact form--> */}
                   <div className='d-flex align-items-center'>
                     <Form style={{ display: 'flex', paddingRight: '26px' }}>
                       <>
-                        {/* <!--begin::Input group--> */}
                         <div className='position-relative w-md-400px me-md-2'>
                           {/* <i className='ki-outline ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6'></i> */}
                           {/* TODO: Add form validation */}
-
                           <input
                             id='searchInput'
                             type='text'
@@ -175,22 +158,12 @@ const TableTemplate = ({
                     <SearchFiltersModal
                       handleSubmit={handleFiltersSubmit}
                       handleClose={handleClose}
-                      show={show}
+                      show={showFilterModal}
                     />
                   </Form>
                 </div>
               </>
             )}
-            {/* <%- include('cardHeader.html', {title: tableTitle, subtitle: subtitle, underline: false, singleLine: singleLine ? singleLine : false }); %>
-            <% if(contentType === "search"){ %> 
-                <div style="display: flex; flex-direction: column; align-items: end;">
-                    <!--begin::Input group-->
-                    <%- include ('../searchButton.html') %>
-                    <button type="button"  className="btn" style="border: none; background: #fff; padding: 5px 26px 0 0;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <span className="card-section-header-subtitle">Filters</span>
-                    </button>
-                </div>
-                <% } %>  */}
           </div>
 
           {contentType === 'search' && !showSearch && (
@@ -298,10 +271,6 @@ const TableTemplate = ({
             tableData={filteredSearchItems}
             columnSettings={columnSettings}
           />
-
-          {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <%- include('searchFilters.html'); %>
-  </div> */}
 
           {/* {contentType === "employee") */}
           {/* { */}

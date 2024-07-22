@@ -2,11 +2,12 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 const Badge = ({ text, color, closeBtn, handleCloseBadge, index }) => {
+  // TODO: set these badge states based on calculations in the data
   const [additionalPreviousExits, setAdditionalPreviousExits] = useState(false);
   const [companyName, setCompanyName] = useState(false);
   const [earlyEmployeeCalculation, setEarlyEmployeeCalculation] =
     useState(false);
-  //   console.log('>>> whats badge index ???', index);
+
   return (
     <>
       {color === 'employee-exits-badge-yes' ? (

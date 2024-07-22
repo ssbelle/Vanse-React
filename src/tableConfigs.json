@@ -107,6 +107,10 @@
       "title": "New  Companies",
       "subtitle": "Companies new to the database inside and outside of your filter groups."
     },
+    "cardHeaderAllCompanies": {
+      "title": "All  Companies",
+      "subtitle": "All companies in the database inside and outside of your filter groups."
+    },
     "badges": {
       "seriesA": "company-badge-seriesA",
       "seriesB": "company-badge-seriesB",

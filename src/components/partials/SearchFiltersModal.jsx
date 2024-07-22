@@ -4,11 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 const SearchFiltersModal = ({ handleSubmit, handleClose, show }) => {
-  useEffect(() => {
-    console.log('>> useeffect modal');
-  }, [show]);
   const handleAdvancedSearch = () => {
-    console.log('>>> shawna handle unb moda;');
     handleSubmit();
     handleClose();
   };

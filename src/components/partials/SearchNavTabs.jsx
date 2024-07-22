@@ -2,31 +2,37 @@ import { useState, useEffect } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Button from 'react-bootstrap/Button';
+import SavedFilterGroups from '../partials/SavedFilterGroups.jsx';
 
 import TableTemplate from '../../components/tableTamplates/TableTemplate.jsx';
 import tableConfigs from '../../tableConfigs.json';
 import companySearchMockData from '../../companySearchMockData.json';
 
 const SearchNavTabs = ({ handleFilterGroupNameChange, filterGroupName }) => {
-  const [key, setKey] = useState('new-companies');
-  const [unsavedTabOpen, setunsavedTabOpen] = useState(false);
+  const [activeTabKey, setActiveKey] = useState('');
 
-  useEffect(() => {}, [key]);
+  useEffect(() => {
+    setActiveKey('new-companies');
+  }, []);
 
   const onFilterSearch = () => {
-    setKey('unsaved-filter-group');
+    setActiveKey('unsaved-filter-group');
   };
 
   const onExitUnsavedTab = () => {
-    setKey('new-companies');
+    setActiveKey('new-companies');
   };
 
   return (
     <>
       <Tabs
-        activeKey={key}
-        id='uncontrolled-tab-example'
-        onSelect={(k) => setKey(k)}
+        activeKey={activeTabKey}
+        id='search-tabs'
+        onSelect={
+          activeTabKey === 'unsaved-filter-group'
+            ? () => null
+            : (k) => setActiveKey(k)
+        }
         className='nav nav-stretch nav-line-tabs nav-line-tabs-2x fs-7 fw-bold'
         style={{ paddingTop: '17px' }}
       >
@@ -55,19 +61,37 @@ const SearchNavTabs = ({ handleFilterGroupNameChange, filterGroupName }) => {
           eventKey='all-companies'
           title='All Companies'
           className='nav-item search-nav-item'
-        ></Tab>
-        {key === 'unsaved-filter-group' && (
+        >
+          {/* TODO: Needs to get the data from the all search companies call */}
+          <TableTemplate
+            contentType='search'
+            tableData={companySearchMockData}
+            headers={tableConfigs.searchCompanyTable.headers}
+            columnSettings={tableConfigs.searchCompanyTable.columnSettings}
+            tableTitle={
+              tableConfigs.searchCompanyTable.cardHeaderAllCompanies.title
+            }
+            subtitle={
+              tableConfigs.searchCompanyTable.cardHeaderAllCompanies.subtitle
+            }
+            singleLine={false}
+            showSearch={true}
+            onFilter={onFilterSearch}
+          />
+        </Tab>
+        {activeTabKey === 'unsaved-filter-group' && (
           <Tab
             eventKey='unsaved-filter-group'
             title={
               <>
                 <span>{filterGroupName}</span>
-                <img
-                  onClick={onExitUnsavedTab}
-                  className='unsaved-filter-button-close'
-                  style={{ marginLeft: '5px' }}
-                  src='/vendors/media/icons/xClose.svg'
-                />
+                <Button onClick={onExitUnsavedTab}>
+                  <img
+                    className='unsaved-filter-button-close'
+                    style={{ marginLeft: '5px' }}
+                    src='/vendors/media/icons/xClose.svg'
+                  />
+                </Button>
               </>
             }
             className='nav-item search-nav-item'
@@ -97,7 +121,9 @@ const SearchNavTabs = ({ handleFilterGroupNameChange, filterGroupName }) => {
           eventKey='saved-filter-groups'
           title='Saved Filter Groups'
           className='nav-item search-nav-item'
-        ></Tab>
+        >
+          <SavedFilterGroups />
+        </Tab>
       </Tabs>
     </>
   );

@@ -1,0 +1,17 @@
+[
+  {
+    "filter_name": "Saved Filter Group 1",
+    "date_saved": "Jan 10, 2024",
+    "filters": [{ "company_type": "b2b" }, { "founding_date": "2018" }]
+  },
+  {
+    "filter_name": "Saved Filter Group 2",
+    "date_saved": "Jan 10, 2024",
+    "filters": [{ "company_type": "b2b" }, { "founding_date": "2023" }]
+  },
+  {
+    "filter_name": "Saved Filter Group 3",
+    "date_saved": "Jan 10, 2024",
+    "filters": [{ "company_type": "b2b" }, { "founding_date": "2018" }]
+  }
+]
