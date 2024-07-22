@@ -19,6 +19,7 @@ const TableTemplate = ({
   singleLine,
   showSearch,
   onFilter,
+  handleFilterGroupNameChange,
 }) => {
   // TODO: remove hardcoded and get filters from advanced form data search results
   const hardcodedFilters = [
@@ -285,6 +286,7 @@ const TableTemplate = ({
                     show={showSaveFilterModal}
                     handleSubmit={handleUnsavedFilterSubmit}
                     handleClose={handleSaveFilterModalClose}
+                    handleFilterGroupNameChange={handleFilterGroupNameChange}
                   />
                 </div>
               </section>

@@ -404,6 +404,10 @@ line-height: 18px;
 
 }
 
+#uncontrolled-tab-example-tab-unsaved-filter-group {
+  width: 183px;
+}
+
 /* Input Styles */
 
 #savedUnamedSearchInput {

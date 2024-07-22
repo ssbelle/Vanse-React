@@ -7,7 +7,7 @@ import TableTemplate from '../../components/tableTamplates/TableTemplate.jsx';
 import tableConfigs from '../../tableConfigs.json';
 import companySearchMockData from '../../companySearchMockData.json';
 
-const SearchNavTabs = () => {
+const SearchNavTabs = ({ handleFilterGroupNameChange, filterGroupName }) => {
   const [key, setKey] = useState('new-companies');
   const [unsavedTabOpen, setunsavedTabOpen] = useState(false);
 
@@ -61,7 +61,7 @@ const SearchNavTabs = () => {
             eventKey='unsaved-filter-group'
             title={
               <>
-                <span>Unsaved Filter Group</span>
+                <span>{filterGroupName}</span>
                 <img
                   onClick={onExitUnsavedTab}
                   className='unsaved-filter-button-close'
@@ -78,11 +78,12 @@ const SearchNavTabs = () => {
               tableData={companySearchMockData}
               headers={tableConfigs.searchCompanyTable.headers}
               columnSettings={tableConfigs.searchCompanyTable.columnSettings}
-              tableTitle='Unsaved Filter Group'
+              tableTitle={filterGroupName}
               subtitle='Companies based on the filters you applied. To return to the filter group later, you must save.'
               singleLine={false}
               showSearch={false}
               onFilter={onFilterSearch}
+              handleFilterGroupNameChange={handleFilterGroupNameChange}
             />
           </Tab>
         )}
