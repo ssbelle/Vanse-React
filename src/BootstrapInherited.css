@@ -1,0 +1,25 @@
+.d-flex {
+    display: flex;
+} 
+
+.align-items-center  {
+    align-items: center;
+ } 
+
+ .flex-grow-1 {
+    flex-grow: 1;
+}
+ 
+ .p-2 {
+    padding: .5rem;
+ }
+
+ .symbol-30px {
+    height: 30px;
+    width: 30px;
+ }
+
+ .symbol-50px {
+    height: 50px;
+    width: 50px;
+ }
